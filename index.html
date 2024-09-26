@@ -36,6 +36,13 @@
       justify-content: center;
       padding: 20px;
     }
+
+    #welcomeMessage {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #3F51B5;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -51,10 +58,10 @@
             <h2 class="mdl-card__title-text">Welcome</h2>
           </div>
           <div class="mdl-card__supporting-text">
-            <form action="handler.php" method="POST">
+            <form id="welcomeForm">
               <!-- Name Input -->
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="name" name="userName" required>
+                <input class="mdl-textfield__input" type="text" id="name" name="name" required>
                 <label class="mdl-textfield__label" for="name">Enter your name</label>
               </div>
 
@@ -65,12 +72,32 @@
                 </button>
               </div>
             </form>
+
+            <!-- Welcome Message -->
+            <div id="welcomeMessage"></div>
+
           </div>
         </div>
 
       </div>
     </main>
   </div>
+
+  <!-- JavaScript to handle the form submission -->
+  <script>
+    document.getElementById('welcomeForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent page reload
+      var name = document.getElementById('name').value;
+      var welcomeMessage = document.getElementById('welcomeMessage');
+
+      // Display the welcome message
+      if (name) {
+        welcomeMessage.textContent = "Welcome, " + name + "!";
+      } else {
+        welcomeMessage.textContent = "Please enter your name!";
+      }
+    });
+  </script>
 
 </body>
 </html>
